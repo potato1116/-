@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>고1 카드 도박 퀴즈</title>
+  <title>고1 카드 퀴즈</title>
   <style>
     body {
       background: #111;
@@ -80,8 +80,8 @@
   </style>
 </head>
 <body>
-  <h1>🎴 고1 카드 도박 퀴즈 🎴</h1>
-  <div class="dealer">도박사: "카드 3장을 나눠주지! 고를 준비나 해라!"</div>
+  <h1>^ 고1 카드 퀴즈 ^</h1>
+  <div class="dealer">선생님: "카드 3장을 나눠줄게 고를 준비 해"</div>
   <div id="score">점수: 0점</div>
   <div class="card-container" id="cards"></div>
 
@@ -94,6 +94,7 @@
 
   <script>
     const questions = [
+      // 기존 20문제
       { q: "DNA는 무엇을 저장하나요?", choices: ["단백질 정보", "에너지", "유전정보", "산소"], a: "유전정보", level: "easy" },
       { q: "도체는 어떤 물질인가요?", choices: ["전기를 흐르지 않게 함", "전기를 잘 흐르게 함", "빛을 반사함", "소리를 증폭시킴"], a: "전기를 잘 흐르게 함", level: "easy" },
       { q: "세포막을 통과하는 수동적인 물질 이동은?", choices: ["능동 수송", "삼투", "확산", "흡수"], a: "확산", level: "easy" },
@@ -116,8 +117,9 @@
       { q: "운동량 보존 법칙은 무엇을 의미하나요?", choices: ["운동 에너지 증가", "운동 방향 고정", "충돌 전후 운동량 일정", "중력 유지"], a: "충돌 전후 운동량 일정", level: "medium" },
       { q: "DNA와 RNA의 차이 중 하나는?", choices: ["DNA는 단일 가닥", "RNA는 핵 내 존재", "RNA는 유라실을 가짐", "DNA는 세포막에 있음"], a: "RNA는 유라실을 가짐", level: "medium" },
       { q: "기권은 무엇으로 구성되어 있나요?", choices: ["수증기와 얼음", "가스층", "액체와 고체", "생명체"], a: "가스층", level: "easy" },
-      { q: "이온이 자유롭게 이동할 수 있는 상태는?", choices: ["고체 상태", "액체 상태", "기체 상태", "수용액 상태"], a: "수용액 상태", level: "medium" }
+      { q: "이온이 자유롭게 이동할 수 있는 상태는?", choices: ["고체 상태", "액체 상태", "기체 상태", "수용액 상태"], a: "수용액 상태", level: "medium" },
 
+      // 추가 20문제 시작
       { q: "반도체의 대표적인 활용 분야는?", choices: ["조명기구", "컴퓨터 칩", "농업용 토양", "식품 저장"], a: "컴퓨터 칩", level: "easy" },
       { q: "기권에서 가장 많이 차지하는 기체는?", choices: ["산소", "질소", "이산화탄소", "헬륨"], a: "질소", level: "easy" },
       { q: "판의 이동으로 발생하는 지질 현상은?", choices: ["태풍", "지진", "홍수", "일식"], a: "지진", level: "medium" },
@@ -148,6 +150,7 @@
 
     function updateScore(points) {
       score += points;
+      if(score < 0) score = 0; // 점수 음수 방지
       document.getElementById("score").textContent = `점수: ${score}점`;
     }
 
@@ -169,6 +172,7 @@
             <div class="card-back ${q.level}">${q.level.toUpperCase()}</div>
           </div>`;
         card.onclick = () => {
+          if(document.getElementById("question-box").style.display === "block") return; // 문제 나왔으면 선택 방지
           card.classList.add("flipped");
           setTimeout(() => showQuestion(q), 800);
         };
@@ -226,3 +230,10 @@
   </script>
 </body>
 </html>
+
+    
+   
+  
+     
+      
+  
